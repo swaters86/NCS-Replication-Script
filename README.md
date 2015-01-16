@@ -1,0 +1,2 @@
+# GIT-To-NCS-Replication-Script
+This script is a file replication script that was developed for NEWSCYCLE Solutions (NCS). This script was originally developed for one of NCS' customers, Digital First Media (DFM). DFM needed us to develop a system for the that would allow them to commit files in one place and have them replicated out out to their respective enviornments/directories. In addition, the replication script would be triggered to run based on if they uploaded a text file to a certain directory.
