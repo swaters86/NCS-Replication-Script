@@ -1,0 +1,11 @@
+#log the script
+log verbose append:"e:\Scripts\DFM_Template_Replication\logs\TemplateRepl%date%.txt"
+#set the comparison criteria
+#criteria timestamp
+#load source and target
+load %1 %2
+option confirm:yes-to-all
+#filter ignore svn subfolders
+filter "-*fileupload\;-*svn\"
+#Sync the local files to the web site, creating empty folders
+sync create-empty mirror:lt->rt

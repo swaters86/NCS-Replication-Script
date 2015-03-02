@@ -8,16 +8,11 @@
 
 	set environments_string=%2
 
-	set sitecodes_string=%3
-
 	for /f "tokens=*" %%x in (%environments_string%) do (
 		set environments=%%x
 	) 
 	REM End FOR loop for getting list of environments from task arguments 
 
-	for /f "tokens=*" %%y in (%sitecodes_string%) do (
-		set sitecodes=%%y
-	)
 	REM End FOR loop for getting list of site codes from task arguments
 
 for %%e in (%environments%) do (
@@ -42,7 +37,7 @@ for %%e in (%environments%) do (
 
 		set globals_source_path=\\sxatl\mn1\sites\MN1\Z_Temp_Checkout_Folder\%%e\Globals
 
-		set globals_destination_path=\\sxatl\tc1\sites\TC1\DFM_Sites\%%e\globals
+		set globals_destination_path=\\sxatl\mn1\sites\MN1\Z_Temp_Checkout_Folder\Target\%%e\globals
 
 		REM Checking if a folder for the global templates exist 
 
@@ -89,11 +84,11 @@ for %%e in (%environments%) do (
 		REM iterate through sitecodes and create necessary site code folders 
 		REM and/or or start comparing the source folder and the destination folder by using Beyond Compare
 
-		for %%s in (!sitecodes!) do (
+		for /f "delims=, tokens=1,2" %%s in (\\sxjoutl001\e$\Files\%clustercode%SiteCodes.txt) do (
 
 			set source_path=\\sxatl\mn1\sites\MN1\Z_Temp_Checkout_Folder\%%e\%clustercode%\%%s
 
-			set destination_path=\\sxatl\tc1\sites\TC1\DFM_Sites\%%e\%clustercode%\%%s
+			set destination_path=\\sxatl\mn1\sites\MN1\Z_Temp_Checkout_Folder\Target\%%e\%clustercode%\%%s
 
 			if not exist !destination_path! (
 
@@ -106,12 +101,13 @@ for %%e in (%environments%) do (
 			mkdir !destination_path!
 
 			) else (
-		
+
 				echo *****************************************************************************************
 				echo.
 				echo Directory for site %%s in %%e already exist or it could not be created. 
 				echo.
 				echo *****************************************************************************************
+				
 			)	
 
 			echo.
@@ -140,7 +136,7 @@ for %%e in (%environments%) do (
 
 		set config_source_path=\\sxatl\mn1\sites\MN1\Z_Temp_Checkout_Folder\%%e\%clustercode%\configFiles
 
-		set config_destination_path=\\sxatl\tc1\sites\TC1\DFM_Sites\%%e\%clustercode%\configFiles
+		set config_destination_path=\\sxatl\mn1\sites\MN1\Z_Temp_Checkout_Folder\Target\%%e\%clustercode%\configFiles
 
 		REM Checking if a folder for the config files exist
 
