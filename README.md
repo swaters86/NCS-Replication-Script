@@ -1,6 +1,6 @@
 # GIT-To-NCS-Replication-Script
 
-The  purpose of this script is allow a user to run it by uploading a text file into a specified folder. In addition, the script is meant to be ran via the Windows Task Scheduler  (by passing in all of the necessary information as arguments to a command executed by a task instance).
+The  purpose of this script is to allow a user to trigger it by uploading a text file into a specified folder. In addition, the script is meant to be ran via the Windows Task Scheduler  (by passing in all of the necessary information as arguments to a command executed by a task instance).
 
 This script was written for Digital First Media so they could commit their template changes to one location on a file server hosted by NEWSCYCLE Solutions (NCS). The script takes the commited files/folders and moves them to different target directories (all cluster, environment, and site code information is passed to the script via arguments). The script also runs an instance of Beyond Compare for each file by comparing the committed files that were checked into the source directory against the files in the target directory.
 
